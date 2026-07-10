@@ -5,54 +5,54 @@
 class Burrow < Formula
   desc "Agent-native cloud CLI: deploy and operate apps on your own Kubernetes cluster through the Burrow control plane."
   homepage "https://github.com/burrow-cloud/burrow"
-  version "0.11.0"
+  version "0.12.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.11.0/burrow_0.11.0_darwin_amd64.tar.gz"
-      sha256 "3d31e873651bd60c38c642df7aa621afceb7073bec1eb9b877092f29318c8652"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_darwin_amd64.tar.gz"
+      sha256 "965c98a64964aa3ecd6d388761cdf72c57fec3fc7bebe4b6eb2173b4b87be312"
 
       define_method(:install) do
         bin.install "burrow"
-        bin.install "burrow-mcp"
+        bin.install "burrow-agent"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.11.0/burrow_0.11.0_darwin_arm64.tar.gz"
-      sha256 "6494c9fd3c060e169736062cfc84295b9bea604146deb4603154b0886cad4977"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_darwin_arm64.tar.gz"
+      sha256 "c836c6e1604ae840849effdf9ec3b42f4fd9eedace3a40d53560e88dd45c6be9"
 
       define_method(:install) do
         bin.install "burrow"
-        bin.install "burrow-mcp"
+        bin.install "burrow-agent"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.11.0/burrow_0.11.0_linux_amd64.tar.gz"
-      sha256 "c8c042d2c7bb82c1a5d34c04fd3c633c26de60683d8a41830287b014eb1d1127"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_linux_amd64.tar.gz"
+      sha256 "c714abd50dccbb9aff3f8980645dfc17a075cbaaa99237f2debe221df879b7be"
       define_method(:install) do
         bin.install "burrow"
-        bin.install "burrow-mcp"
+        bin.install "burrow-agent"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.11.0/burrow_0.11.0_linux_arm64.tar.gz"
-      sha256 "ea2da01a9a60bb7c1d04f16f09ac36a699f90c69cd2fec4e4117102ac62ce4c7"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_linux_arm64.tar.gz"
+      sha256 "1bec0d77850621618a8cf711de9f10de71bda34c3ec944fa676c2ee3509a85d0"
       define_method(:install) do
         bin.install "burrow"
-        bin.install "burrow-mcp"
+        bin.install "burrow-agent"
       end
     end
   end
 
   def caveats
     <<~EOS
-      burrow-mcp was updated. Restart any open agent session so it loads the new
-      MCP server. You can resume your previous one (for example, `claude --resume`).
-      Your `burrow` CLI in the terminal is already up to date.
+      burrow-agent (the agent's control channel) was updated. Restart any open agent
+      session so it picks up the new binary. You can resume your previous one (for
+      example, `claude --resume`). Your `burrow` CLI in the terminal is already up to date.
     EOS
   end
 end
