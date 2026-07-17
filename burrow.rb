@@ -5,13 +5,13 @@
 class Burrow < Formula
   desc "Agent-native cloud CLI: deploy and operate apps on your own Kubernetes cluster through the Burrow control plane."
   homepage "https://github.com/burrow-cloud/burrow"
-  version "0.12.0"
+  version "0.13.0-rc.1"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_darwin_amd64.tar.gz"
-      sha256 "965c98a64964aa3ecd6d388761cdf72c57fec3fc7bebe4b6eb2173b4b87be312"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.13.0-rc.1/burrow_0.13.0-rc.1_darwin_amd64.tar.gz"
+      sha256 "ca5909e14e74b42d0aa1d99259e04aaf03b9cb82960beb69f5cfac25a1104984"
 
       define_method(:install) do
         bin.install "burrow"
@@ -19,8 +19,8 @@ class Burrow < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_darwin_arm64.tar.gz"
-      sha256 "c836c6e1604ae840849effdf9ec3b42f4fd9eedace3a40d53560e88dd45c6be9"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.13.0-rc.1/burrow_0.13.0-rc.1_darwin_arm64.tar.gz"
+      sha256 "6504c77931794aff6aae56e49bb3b80a5a2365e0114fa724cbe3f14fd7c20408"
 
       define_method(:install) do
         bin.install "burrow"
@@ -31,16 +31,16 @@ class Burrow < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_linux_amd64.tar.gz"
-      sha256 "c714abd50dccbb9aff3f8980645dfc17a075cbaaa99237f2debe221df879b7be"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.13.0-rc.1/burrow_0.13.0-rc.1_linux_amd64.tar.gz"
+      sha256 "e0c4b8b343189daf68807920519c5657de81120cc4c9fc5e281517e93abe9695"
       define_method(:install) do
         bin.install "burrow"
         bin.install "burrow-agent"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.12.0/burrow_0.12.0_linux_arm64.tar.gz"
-      sha256 "1bec0d77850621618a8cf711de9f10de71bda34c3ec944fa676c2ee3509a85d0"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.13.0-rc.1/burrow_0.13.0-rc.1_linux_arm64.tar.gz"
+      sha256 "b53296c5ae7a33a3c3f58592a6ec350a749ac3cb5649f7d375177fa020d35fa6"
       define_method(:install) do
         bin.install "burrow"
         bin.install "burrow-agent"
