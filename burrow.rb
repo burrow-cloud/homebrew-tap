@@ -5,13 +5,13 @@
 class Burrow < Formula
   desc "Agent-native cloud CLI: deploy and operate apps on your own Kubernetes cluster through the Burrow control plane."
   homepage "https://github.com/burrow-cloud/burrow"
-  version "0.14.0-rc.10"
+  version "0.14.0-rc.11"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.10/burrow_0.14.0-rc.10_darwin_amd64.tar.gz"
-      sha256 "98d914af69f5912e0358fd7a392c8b9eca45570b82dafe47a223b0d6cceed780"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.11/burrow_0.14.0-rc.11_darwin_amd64.tar.gz"
+      sha256 "1445fd315b070e14eff4c6f7c4f078211d1df7c84fdafd34556afc286456588a"
 
       define_method(:install) do
         bin.install "burrow"
@@ -19,8 +19,8 @@ class Burrow < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.10/burrow_0.14.0-rc.10_darwin_arm64.tar.gz"
-      sha256 "89b1661163c7f413c814bb338b21aab9254ef9bf4d622ff2a8ace364759e39d2"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.11/burrow_0.14.0-rc.11_darwin_arm64.tar.gz"
+      sha256 "6744ea15a975c047fdae38ba84f1ea70a0e4a6bb64c6804221c10351f969033f"
 
       define_method(:install) do
         bin.install "burrow"
@@ -31,16 +31,16 @@ class Burrow < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.10/burrow_0.14.0-rc.10_linux_amd64.tar.gz"
-      sha256 "381efe2ef2bb4eb24fbb1ddcb557d7b493ac8e579b8fe5526783558836f09a73"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.11/burrow_0.14.0-rc.11_linux_amd64.tar.gz"
+      sha256 "8800bb9cad7d2153fac64ea6faf8c38f5dc53ce1852c14f079cc6039eeff5052"
       define_method(:install) do
         bin.install "burrow"
         bin.install "burrow-agent"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.10/burrow_0.14.0-rc.10_linux_arm64.tar.gz"
-      sha256 "35f5a9f61e94d83ea860b60fb20fd94f535aaacd7ee2505e913ca51c80aa4bf1"
+      url "https://github.com/burrow-cloud/burrow/releases/download/v0.14.0-rc.11/burrow_0.14.0-rc.11_linux_arm64.tar.gz"
+      sha256 "a6c8a09f841ea2a2cfca8b5db424af44835f037b3a947f91113104c0b1c83fdc"
       define_method(:install) do
         bin.install "burrow"
         bin.install "burrow-agent"
@@ -50,9 +50,11 @@ class Burrow < Formula
 
   def caveats
     <<~EOS
-      burrow-agent (the agent's control channel) was updated. Restart any open agent
-      session so it picks up the new binary. You can resume your previous one (for
-      example, `claude --resume`). Your `burrow` CLI in the terminal is already up to date.
+      `burrow` and `burrow-agent` both take effect immediately; nothing needs restarting.
+
+      If this release changed the agent's verbs, re-run `burrow agent <tool> install` (for
+      example, `burrow agent claude install`) so the wiring in your agent's configuration
+      matches what the binary now does. It is idempotent, and it backs up any file it edits.
     EOS
   end
 end
